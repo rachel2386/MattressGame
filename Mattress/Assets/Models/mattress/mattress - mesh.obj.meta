@@ -62,7 +62,17 @@ ModelImporter:
     4300016: Mesh7_matrass1_Model
     4300018: Mesh8_matrass1_Model
     4300020: Mesh9_matrass1_Model
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontColor
+    second: {fileID: 2100000, guid: 8ef820bc01ca6ae4d98553362e1e935a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _1
+    second: {fileID: 2100000, guid: dc0c3b92eef8ba24391f5312b0ed5a30, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
