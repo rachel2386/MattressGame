@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eaf6a4df329789447afe1893d22595ae
+guid: bc5ea2951ec0e30448a283ad14e9ae79
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -62,17 +62,7 @@ ModelImporter:
     4300016: Mesh7_matrass1_Model
     4300018: Mesh8_matrass1_Model
     4300020: Mesh9_matrass1_Model
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FrontColor
-    second: {fileID: 2100000, guid: d3d793d70951f5f4b910d96e3956242c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _1
-    second: {fileID: 2100000, guid: 4be7cc1bd084447419c65f5d5a1e43d1, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
