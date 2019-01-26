@@ -86,6 +86,7 @@ public class UDPListenser : MonoBehaviour
         if (_receivedData.Count > 0)
         {
             UDPReceived?.Invoke(_receivedData[_receivedData.Count - 1], Time.time - _lastUpdateTime);
+            print(_receivedData[_receivedData.Count - 1]);
             _lastUpdateTime = Time.time;
             _receivedData.Clear();
         }

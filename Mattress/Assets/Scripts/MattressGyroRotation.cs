@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Mattress : MonoBehaviour
+public class MattressGyroRotation : MonoBehaviour
 {
     [SerializeField] Vector2 _pinchRange = new Vector2(-3.13f, 3.13f);
     [SerializeField] Vector2 _rollRange = new Vector2(-3.13f, 3.13f);
@@ -23,10 +23,14 @@ public class Mattress : MonoBehaviour
     private void OnGyroDataReceived(string dataString, float interval)
     {
         string[] latestData = dataString.Split(',');
+        Debug.Log(latestData[1]);
         float z = Mathf.Lerp(180f, -180f, (float.Parse(latestData[1]) - _rollRange.x) / (_rollRange.y - _rollRange.x));
         float y = Mathf.Lerp(180f, -180f, (float.Parse(latestData[3]) - _yawRange.x) / (_yawRange.y - _yawRange.x));
         float x = Mathf.Lerp(180f, -180f, (float.Parse(latestData[2]) - _pinchRange.x) / (_pinchRange.y - _pinchRange.x));
 
+        transform.rotation = Quaternion.Euler(x, y, z);
+
+        /*
         if (interval > 0.1f)
         {
             transform.DORotate(new Vector3(x, y, z), interval, RotateMode.Fast).SetEase(Ease.Linear);
@@ -35,5 +39,6 @@ public class Mattress : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(x, y, z);
         }
+        */
     }
 }
