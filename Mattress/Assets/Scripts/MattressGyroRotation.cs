@@ -8,7 +8,6 @@ public class MattressGyroRotation : MonoBehaviour
 {
     [SerializeField] Vector2 _pinchRange = new Vector2(-3.13f, 3.13f);
     [SerializeField] Vector2 _rollRange = new Vector2(-3.13f, 3.13f);
-    [SerializeField] Vector2 _yawRange = new Vector2(-3.13f, 3.13f);
 
     private void OnEnable()
     {
@@ -20,15 +19,14 @@ public class MattressGyroRotation : MonoBehaviour
         UDPListenser.UDPReceived -= OnGyroDataReceived;
     }
 
-    private void OnGyroDataReceived(string dataString, float interval)
+    private void OnGyroDataReceived(Vector3 gyroVector, float interval)
     {
-        string[] latestData = dataString.Split(',');
-        Debug.Log(latestData[1]);
-        float z = Mathf.Lerp(180f, -180f, (float.Parse(latestData[1]) - _rollRange.x) / (_rollRange.y - _rollRange.x));
-        float y = Mathf.Lerp(180f, -180f, (float.Parse(latestData[3]) - _yawRange.x) / (_yawRange.y - _yawRange.x));
-        float x = Mathf.Lerp(180f, -180f, (float.Parse(latestData[2]) - _pinchRange.x) / (_pinchRange.y - _pinchRange.x));
+        float z = Mathf.Lerp(180f, -180f, (gyroVector.z - _rollRange.x) / (_rollRange.y - _rollRange.x));
+        //float y = Mathf.Lerp(180f, -180f, (gyroVector.y - _yawRange.x) / (_yawRange.y - _yawRange.x));
+        float x = Mathf.Lerp(180f, -180f, (gyroVector.x - _pinchRange.x) / (_pinchRange.y - _pinchRange.x));
 
-        transform.rotation = Quaternion.Euler(x, y, z);
+        DOTween.Kill(transform);
+        transform.DOLocalRotate(new Vector3(x, 0, z), interval, RotateMode.Fast).SetEase(Ease.Linear);
 
         /*
         if (interval > 0.1f)

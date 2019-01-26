@@ -56,7 +56,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pinchRange: {x: -3.13, y: 3.13}
   _rollRange: {x: -3.13, y: 3.13}
-  _yawRange: {x: -3.13, y: 3.13}
 --- !u!1 &2082584568372055469
 GameObject:
   m_ObjectHideFlags: 0

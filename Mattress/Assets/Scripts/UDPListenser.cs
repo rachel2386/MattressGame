@@ -11,7 +11,7 @@ using UnityEngine;
 public class UDPListenser : MonoBehaviour
 {
 
-    public static event Action<string, float> UDPReceived;
+    public static event Action<Vector3, float> UDPReceived;
 
     [SerializeField] private int _port = 10552;
 
@@ -85,8 +85,8 @@ public class UDPListenser : MonoBehaviour
     {
         if (_receivedData.Count > 0)
         {
-            UDPReceived?.Invoke(_receivedData[_receivedData.Count - 1], Time.time - _lastUpdateTime);
-            print(_receivedData[_receivedData.Count - 1]);
+            string[] latestData = _receivedData[_receivedData.Count - 1].Split(',');
+            UDPReceived?.Invoke(new Vector3(float.Parse(latestData[2]), float.Parse(latestData[3]), float.Parse(latestData[1])), Time.time - _lastUpdateTime);
             _lastUpdateTime = Time.time;
             _receivedData.Clear();
         }
