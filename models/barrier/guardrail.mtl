@@ -1,0 +1,9 @@
+# Exported from 3D Builder
+
+newmtl lambert1
+Kd 1.000000 1.000000 1.000000
+map_Kd lambert1_baseColor.jpg
+
+newmtl lambert1
+Kd 1.000000 1.000000 1.000000
+map_Kd lambert1_baseColor.jpg
