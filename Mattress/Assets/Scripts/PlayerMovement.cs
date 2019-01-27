@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         float y = Mathf.Lerp(180f, -180f, (gyroVector.y - _yawRange.x) / (_yawRange.y - _yawRange.x));
         DOTween.Kill(_movementTweenTarget);
-        _rigibody.DOMove(_rigibody.position + walkDirection.normalized * _stepLength, interval).SetEase(Ease.Linear).SetTarget(_movementTweenTarget);
+        _rigibody.velocity = walkDirection *_stepLength;
         _rigibody.DORotate(Vector3.up * y, interval, RotateMode.Fast).SetEase(Ease.Linear).SetTarget(_movementTweenTarget);
 
         if (!DOTween.IsTweening(Camera.main.transform, true))
