@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Player;
 
+    public Collider BaseCollider { get; private set; }
+
     [Header("Movement Settings")]
     [SerializeField] private float _forwardForceFactor = 100000f;
     [SerializeField] private float _rightForceFactor = 100000f;
@@ -24,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Player = this;
         }
+
+        BaseCollider = GetComponent<Collider>();
     }
 
     private void OnEnable()
