@@ -26,10 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigibody = GetComponent<Rigidbody>();
         
-        if (Player == null)
-        {
-            Player = this;
-        }
+        Player = this;
 
         BaseCollider = GetComponent<Collider>();
     }
