@@ -132,7 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stepLength: 1
-  _footStepAudio: {fileID: 8300000, guid: 84ded74648ecbee40b384680064f1ad6, type: 3}
+  _footStepAudioOne: {fileID: 8300000, guid: 43d9b35d358d4294689d8102091f1067, type: 3}
+  _footStepAudioTwo: {fileID: 8300000, guid: cdc6e777f89e5c541a411a07612916e4, type: 3}
   _yawRange: {x: -3.13, y: 3.13}
 --- !u!54 &5499084479054376231
 Rigidbody:
