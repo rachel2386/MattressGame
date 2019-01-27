@@ -4,27 +4,45 @@ using UnityEngine;
 
 public class ObjectActiveSwitch : MonoBehaviour
 {
-    [SerializeField] float _switchInterval = 20.0f;
+    [SerializeField] float _switchInterval = 30.0f;
+    [SerializeField] float _waitTime = 12.0f;
 
     [SerializeField] GameObject[] _groupA;
     [SerializeField] GameObject[] _groupB;
     // Start is called before the first frame update
+
     void Start()
     {
-        
+        StartCoroutine(ObjectActiveSwitchCoroutine(true));
     }
 
-    public void EnableObjectGroup (GameObject[] group)
+    public void SetObjectGroupActive (GameObject[] group, bool active)
     {
         foreach(GameObject go in group)
         {
-
+            go.SetActive(active);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator ObjectActiveSwitchCoroutine (bool activeA)
     {
-        
+        SetObjectGroupActive(_groupA, activeA);
+        SetObjectGroupActive(_groupB, !activeA);
+
+        yield return new WaitForSeconds(_switchInterval);
+
+        SetObjectGroupActive(_groupA, !activeA);
+
+        yield return new WaitForSeconds(_waitTime);
+
+        SetObjectGroupActive(_groupB, activeA);
+
+        yield return new WaitForSeconds(_switchInterval);
+
+        SetObjectGroupActive(_groupB, !activeA);
+
+        yield return new WaitForSeconds(_waitTime);
+
+        StartCoroutine(ObjectActiveSwitchCoroutine(activeA));
     }
 }
