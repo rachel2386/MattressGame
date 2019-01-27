@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour
     {
         Camera.main.cullingMask = _endGameLayerMask;
         MattressGyroRotation.Instance.enabled = false;
+        Camera.main.transform.SetParent(null);
+        Destroy(PlayerMovement.Player.gameObject);
+        MattressGyroRotation.Instance.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 3 + Vector3.up * 0.3f;
         MattressGyroRotation.Instance.transform.DORotate(Vector3.up * 360f, 10.0f, RotateMode.LocalAxisAdd).SetLoops(-1);
     }
 
