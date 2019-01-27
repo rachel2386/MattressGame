@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49113496129de1e4cb431f8ed8dfa8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stepLength: 0.05
+  _stepLength: 1
   _yawRange: {x: -3.13, y: 3.13}
 --- !u!54 &5499084479054376231
 Rigidbody:
