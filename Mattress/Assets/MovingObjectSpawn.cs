@@ -28,7 +28,7 @@ public class MovingObjectSpawn : MonoBehaviour
         {
             _timer = 0;
             _randomIntervalOffset = Random.Range(0f, _spawnIntervalRandomness);
-            GameObject movingObject = Instantiate(_objectList[Random.Range(0, _objectList.Length)], transform.position, transform.rotation, transform);
+            GameObject movingObject = Instantiate(_objectList[Random.Range(0, _objectList.Length)], transform.position, transform.rotation);
             movingObject.transform.DOMove(transform.position + transform.forward * _movingDistance, _movingDistance / _movingSpeed)
                 .OnComplete(() => { Destroy(movingObject); });
         }
