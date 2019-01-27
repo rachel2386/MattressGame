@@ -19,10 +19,17 @@ public class GameController : MonoBehaviour
     {
         Camera.main.cullingMask = _endGameLayerMask;
         MattressGyroRotation.Instance.enabled = false;
-        Camera.main.transform.SetParent(null);
+        Vector3 cameraPosition = Camera.main.transform.position;
+        print(cameraPosition);
+        Quaternion cameraRotation = Camera.main.transform.rotation;
+        Camera.main.transform.parent = null;
         Destroy(PlayerMovement.Player.gameObject);
-        MattressGyroRotation.Instance.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 3 + Vector3.up * 0.3f;
-        MattressGyroRotation.Instance.transform.DORotate(Vector3.up * 360f, 10.0f, RotateMode.LocalAxisAdd).SetLoops(-1);
+        MattressGyroRotation.Instance.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2 + Vector3.up * 0.1f;
+        MattressGyroRotation.Instance.transform.DORotate(Vector3.up * 360f, 10.0f, RotateMode.LocalAxisAdd).SetLoops(-1)
+            .OnStart(()=> {
+                Camera.main.transform.position = cameraPosition;
+                Camera.main.transform.rotation = cameraRotation;
+            });
     }
 
     public void StartGame ()

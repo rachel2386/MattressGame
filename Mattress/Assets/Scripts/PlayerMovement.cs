@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float _stepLength = 0.05f;
+    [SerializeField] private AudioClip _footStepAudioOne;
+    [SerializeField] private AudioClip _footStepAudioTwo;
     /*
     [SerializeField] private float _forwardForceFactor = 100000f;
     [SerializeField] private float _rightForceFactor = 100000f;
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody _rigibody;
     private object _movementTweenTarget = new object();
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -29,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
         Player = this;
 
         BaseCollider = GetComponent<Collider>();
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
     }
 
     private void OnEnable()
@@ -91,7 +99,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (!DOTween.IsTweening(Camera.main.transform, true))
         {
-            Camera.main.transform.DOLocalJump(Camera.main.transform.localPosition, 0.01f, 1, interval * 6f).SetEase(Ease.Linear);
+            Camera.main.transform.DOLocalJump(Camera.main.transform.localPosition, 0.07f, 1, _footStepAudioOne.length * 2f + _footStepAudioTwo.length * 2f)
+                .OnStart(() => {
+                    _audioSource.PlayOneShot(_footStepAudioOne);
+                    DOVirtual.DelayedCall(_footStepAudioOne.length * 2f, () => { _audioSource.PlayOneShot(_footStepAudioTwo); });
+                })
+                ;
         }
     }
 }
