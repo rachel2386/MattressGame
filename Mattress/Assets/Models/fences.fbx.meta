@@ -1151,7 +1151,12 @@ ModelImporter:
     4300452: Montante_rectangular_Montante_KNAUF_70_mm__1162368_
     4300454: Montante_rectangular_Montante_KNAUF_70_mm__1148624_
     4300456: Montante_rectangular_Montante_KNAUF_70_mm__1163710_
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wire_204204204
+    second: {fileID: 2100000, guid: 94bb02c33d42574408313681d861c971, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
