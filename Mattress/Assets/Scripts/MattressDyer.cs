@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MattressDyer : MonoBehaviour
 {
+    public static event Action<RaycastHit> MattressHit;
+
     [SerializeField] private MeshCollider _mattresMeshCollider;
     [SerializeField] private Texture2D[] _dirtTextures;
     [SerializeField] private Color[] _dirtColorList;
@@ -56,15 +59,15 @@ public class MattressDyer : MonoBehaviour
         print(hit.textureCoord);
         print(textureXCoord.ToString() + "    ,   " + textureYCoord.ToString());
 
-        Texture2D dirtTexture = _dirtTextures[Random.Range(0, _dirtTextures.Length)];
+        Texture2D dirtTexture = _dirtTextures[UnityEngine.Random.Range(0, _dirtTextures.Length)];
 
         Color dirtTextureColor;
         Vector2 paintVector;
-        float xRandomScale = Random.Range(0.5f, 2);
-        float yRandomScale = Random.Range(0.5f, 2);
+        float xRandomScale = UnityEngine.Random.Range(0.5f, 2);
+        float yRandomScale = UnityEngine.Random.Range(0.5f, 2);
         int dirtWidth = (int)(dirtTexture.width * xRandomScale);
         int dirtHeight = (int) (dirtTexture.height * yRandomScale);
-        Color randomDirtColor = _dirtColorList[Random.Range(0, _dirtColorList.Length)];
+        Color randomDirtColor = _dirtColorList[UnityEngine.Random.Range(0, _dirtColorList.Length)];
 
         for (int x = 0; x < dirtWidth; x++)
         {
@@ -83,5 +86,6 @@ public class MattressDyer : MonoBehaviour
             }
         }
         _mattressTextureInstance.Apply();
+        MattressHit?.Invoke(hit);
     }
 }

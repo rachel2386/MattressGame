@@ -6,9 +6,16 @@ using DG.Tweening;
 
 public class MattressGyroRotation : MonoBehaviour
 {
+    public static MattressGyroRotation Instance;
+
     [SerializeField] Vector2 _pinchRange = new Vector2(-3.13f, 3.13f);
     [SerializeField] Vector2 _yawRange = new Vector2(-3.13f, 3.13f);
     [SerializeField] Vector2 _rollRange = new Vector2(-3.13f, 3.13f);
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
