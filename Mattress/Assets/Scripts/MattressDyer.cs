@@ -7,6 +7,7 @@ public class MattressDyer : MonoBehaviour
 {
     [SerializeField] private MeshCollider _mattresMeshCollider;
     [SerializeField] private Texture2D[] _dirtTextures;
+    [SerializeField] private Color[] _dirtColorList;
 
     private MeshFilter _mattressMeshFilter;
     private Mesh _mattressMesh;
@@ -59,18 +60,24 @@ public class MattressDyer : MonoBehaviour
 
         Color dirtTextureColor;
         Vector2 paintVector;
-        for(int x = 0; x < dirtTexture.width; x++)
+        float xRandomScale = Random.Range(0.5f, 2);
+        float yRandomScale = Random.Range(0.5f, 2);
+        int dirtWidth = (int)(dirtTexture.width * xRandomScale);
+        int dirtHeight = (int) (dirtTexture.height * yRandomScale);
+        Color randomDirtColor = _dirtColorList[Random.Range(0, _dirtColorList.Length)];
+
+        for (int x = 0; x < dirtWidth; x++)
         {
-            for(int y = 0; y < dirtTexture.height; y++)
+            for(int y = 0; y < dirtHeight; y++)
             {
-                dirtTextureColor = dirtTexture.GetPixel(x, y);
+                dirtTextureColor = dirtTexture.GetPixel((int)(x/xRandomScale), (int)(y/yRandomScale));
                 if (dirtTextureColor.a > 0.8f)
                 {
-                    paintVector.x = textureXCoord - dirtTexture.width / 2 + x;
-                    paintVector.y = textureYCoord - dirtTexture.height / 2 + y;
+                    paintVector.x = textureXCoord - dirtWidth / 2 + x;
+                    paintVector.y = textureYCoord - dirtHeight / 2 + y;
                     if (paintVector.x >= 0 && paintVector.y >= 0)
                     {
-                        _mattressTextureInstance.SetPixel((int) paintVector.x, (int) paintVector.y, Color.yellow);
+                        _mattressTextureInstance.SetPixel((int) paintVector.x, (int) paintVector.y, randomDirtColor);
                     }
                 }
             }
