@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private LayerMask _endGameLayerMask;
     [SerializeField] private CanvasGroup _endCanvas;
+    [SerializeField] private GameObject _startScreen;
 
     private void Awake()
     {
@@ -32,6 +33,8 @@ public class GameController : MonoBehaviour
                 Camera.main.transform.position = cameraPosition;
                 Camera.main.transform.rotation = cameraRotation;
             });
+        Camera.main.transform.DOMove(cameraPosition, 2.0f).SetEase(Ease.InOutSine);
+        Camera.main.transform.DORotate(cameraRotation.eulerAngles, 2.0f).SetEase(Ease.InOutSine);
     }
 
     public void StartGame ()
@@ -50,6 +53,11 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _startScreen.SetActive(!_startScreen.activeSelf);
         }
     }
 }
