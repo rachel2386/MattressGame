@@ -86,6 +86,7 @@ public class UDPListenser : MonoBehaviour
         if (_receivedData.Count > 0)
         {
             string[] latestData = _receivedData[_receivedData.Count - 1].Split(',');
+            Debug.Log("lalalal");
             UDPReceived?.Invoke(new Vector3(float.Parse(latestData[2]), float.Parse(latestData[3]), float.Parse(latestData[1])), Time.time - _lastUpdateTime);
             _lastUpdateTime = Time.time;
             _receivedData.Clear();

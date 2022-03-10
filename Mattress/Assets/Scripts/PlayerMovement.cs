@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _stepLength = 0.05f;
     [SerializeField] private AudioClip _footStepAudioOne;
     [SerializeField] private AudioClip _footStepAudioTwo;
+
+    [SerializeField] private bool _invertedFoward;
     /*
     [SerializeField] private float _forwardForceFactor = 100000f;
     [SerializeField] private float _rightForceFactor = 100000f;
@@ -61,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 walkDirection = transform.forward;
+            }
+
+            if (_invertedFoward)
+            {
+                walkDirection = -walkDirection;
             }
         }
         else
